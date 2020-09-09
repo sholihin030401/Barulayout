@@ -2,8 +2,10 @@ package com.project.gemastik.reminder.impian;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.project.gemastik.reminder.R;
+import com.project.gemastik.reminder.cnbfragment.ImpianFragment;
 
 import java.util.ArrayList;
 
@@ -43,11 +46,12 @@ public class AddImpianActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (checkNullData()){
                     FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                    AktifFragment aktifFragment = new AktifFragment();
+                    Fragment aktifFragment = new ImpianFragment();
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("Data",impianItems);
                     aktifFragment.setArguments(bundle);
-                    ft.replace(R.id.container_impian,aktifFragment);
+                    ft.replace(R.id.impian_container,aktifFragment);
+                    ft.addToBackStack(null);
                     ft.commit();
                 }
             }

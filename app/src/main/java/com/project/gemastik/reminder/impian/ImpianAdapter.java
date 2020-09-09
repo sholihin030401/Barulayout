@@ -19,11 +19,9 @@ public class ImpianAdapter extends RecyclerView.Adapter<ImpianAdapter.ImpianHold
 
     private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
     private ArrayList<ImpianItem> itemList;
-    private Context context;
 
-    public ImpianAdapter(ArrayList<ImpianItem> itemList, Context context) {
+    public ImpianAdapter(ArrayList<ImpianItem> itemList) {
         this.itemList = itemList;
-        this.context = context;
     }
 
     @NonNull

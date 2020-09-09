@@ -100,7 +100,7 @@ public class JadwalFragment extends Fragment implements DatePickerListener {
             personEmail = acct.getEmail();
 
         }else {
-            personEmail = mUser.getEmail();
+            //personEmail = mUser.getEmail();
         }
 
         mRecycler = view.findViewById(R.id.rv_agenda);

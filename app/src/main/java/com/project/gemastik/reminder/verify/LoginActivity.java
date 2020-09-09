@@ -54,18 +54,6 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    FirebaseAuth.AuthStateListener authStateListener = new FirebaseAuth.AuthStateListener() {
-        @Override
-        public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-            FirebaseUser mUser = firebaseAuth.getCurrentUser();
-
-            if (mUser != null){
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        }
-    };
 
     private void loginUser(){
         String txmail, txpass;
@@ -97,6 +85,19 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    FirebaseAuth.AuthStateListener authStateListener = new FirebaseAuth.AuthStateListener() {
+        @Override
+        public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+            FirebaseUser mUser = firebaseAuth.getCurrentUser();
+
+            if (mUser != null){
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }
+    };
 
     @Override
     protected void onStart() {

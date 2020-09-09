@@ -1,39 +1,38 @@
 package com.project.gemastik.reminder.cnbfragment;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager.widget.ViewPager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.tabs.TabLayout;
 import com.project.gemastik.reminder.R;
 import com.project.gemastik.reminder.impian.AddImpianActivity;
-import com.project.gemastik.reminder.impian.AktifFragment;
 import com.project.gemastik.reminder.impian.DialogAddTercapaiFragment;
-import com.project.gemastik.reminder.impian.TercapaiFragment;
+import com.project.gemastik.reminder.impian.ImpianAdapter;
+import com.project.gemastik.reminder.impian.ImpianItem;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ImpianFragment extends Fragment {
 
-    CardView btn_aktif, btn_capai, btn_goals;
-    ImageView imgAktif, imgCapai;
-    TextView txAktif, txCapai;
+    CardView btn_goals;
+    ArrayList<ImpianItem> list = new ArrayList<>();
+    RecyclerView rv_impian;
     public ImpianFragment() {
         // Required empty public constructor
     }
@@ -46,27 +45,14 @@ public class ImpianFragment extends Fragment {
         View viewFrag = inflater.inflate(R.layout.fragment_impian, container, false);
 
         FloatingActionButton fab = viewFrag.findViewById(R.id.fabAddImpian);
-        btn_aktif = viewFrag.findViewById(R.id.active_goals);
-        btn_aktif.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                fragAktif();
-            }
-        });
-
-        btn_capai = viewFrag.findViewById(R.id.complete_goals);
-        btn_capai.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                fragCapai();
-            }
-        });
-        imgAktif = viewFrag.findViewById(R.id.img_aktif);
-        imgCapai = viewFrag.findViewById(R.id.img_capai);
-        txAktif = viewFrag.findViewById(R.id.tx_aktif);
-        txCapai = viewFrag.findViewById(R.id.tx_capai);
-
         btn_goals = viewFrag.findViewById(R.id.ask_goals);
+
+        rv_impian = viewFrag.findViewById(R.id.rv_impian);
+        rv_impian.setHasFixedSize(true);
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
+        ImpianAdapter adapter = new ImpianAdapter(list);
+        rv_impian.setLayoutManager(manager);
+        rv_impian.setAdapter(adapter);
         btn_goals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,26 +68,7 @@ public class ImpianFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        fragAktif();
         return viewFrag;
-    }
-
-    private void fragAktif(){
-        imgAktif.setImageResource(R.drawable.ic_goals_active_check);
-        txAktif.setTextColor(Color.WHITE);
-
-        FragmentTransaction transaction1 = getChildFragmentManager().beginTransaction();
-        transaction1.replace(R.id.container_impian,new AktifFragment());
-        transaction1.commit();
-    }
-
-    private void fragCapai(){
-        imgCapai.setImageResource(R.drawable.ic_goals_complete_check);
-        txCapai.setTextColor(Color.WHITE);
-
-        FragmentTransaction transaction2 = getChildFragmentManager().beginTransaction();
-        transaction2.replace(R.id.container_impian,new TercapaiFragment());
-        transaction2.commit();
     }
 
 }
