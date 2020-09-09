@@ -5,25 +5,21 @@ import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.project.gemastik.reminder.R;
 import com.project.gemastik.reminder.impian.AddImpianActivity;
-import com.project.gemastik.reminder.impian.DialogAddTercapaiFragment;
 import com.project.gemastik.reminder.impian.ImpianAdapter;
 import com.project.gemastik.reminder.impian.ImpianItem;
+import com.project.gemastik.reminder.impian.TipsFragment;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,7 +52,7 @@ public class ImpianFragment extends Fragment {
         btn_goals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DialogAddTercapaiFragment fragment = new DialogAddTercapaiFragment();
+                TipsFragment fragment = new TipsFragment();
                 fragment.show(getChildFragmentManager(),"FragmentTips");
             }
         });
